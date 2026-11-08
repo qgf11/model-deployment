@@ -1,0 +1,35 @@
+{
+  "status": "PASS_STATIC",
+  "date": "2026-10-31",
+  "nodes": {
+    "P0": "10.26.2.14",
+    "P1": "10.26.2.15",
+    "D0": "10.26.2.16",
+    "D1": "10.26.2.17"
+  },
+  "checks": [
+    "all shell syntax and Python AST",
+    "four identical cluster configs",
+    "24 rank dry-run commands",
+    "P/D KV layout and role",
+    "NPU mapping and rank ports",
+    "proxy 8 P + 16 D endpoints",
+    "DP address and memory settings"
+  ],
+  "unchanged_from_new_cluster": [
+    "model path",
+    "image",
+    "IP addresses",
+    "NIC",
+    "P and D memory utilization",
+    "max context",
+    "service name and port",
+    "HCCL timeout",
+    "D layout"
+  ],
+  "not_verified": [
+    "remote deployment",
+    "runtime KV transfer and inference",
+    "long context and load stability"
+  ]
+}

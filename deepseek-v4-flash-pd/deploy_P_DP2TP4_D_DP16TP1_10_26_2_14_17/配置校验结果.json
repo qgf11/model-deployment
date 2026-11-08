@@ -1,0 +1,28 @@
+{
+  "status": "PASS_STATIC",
+  "date": "2026-10-31",
+  "nodes": {
+    "P0": "10.26.2.14",
+    "P1": "10.26.2.15",
+    "D0": "10.26.2.16",
+    "D1": "10.26.2.17"
+  },
+  "checks": [
+    "shell syntax",
+    "20 rank dry-run commands",
+    "P/D KV layout",
+    "NPU mapping",
+    "proxy 4 P + 16 D endpoints",
+    "four identical cluster configs"
+  ],
+  "outstanding": [
+    "server weight file identity and completeness",
+    "actual node and image compatibility",
+    "runtime network, KV transfer and load verification"
+  ],
+  "user_confirmed": {
+    "NIC_NAME": "bond1",
+    "MODEL_PATH": "/data1/DeepSeek-V4-Flash-0731-w8a8",
+    "server_live_read": false
+  }
+}

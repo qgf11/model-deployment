@@ -1,0 +1,195 @@
+{
+  "status": "PASS",
+  "checks": [
+    "shell syntax",
+    "Python syntax",
+    "24 generated vLLM commands",
+    "all JSON arguments",
+    "per-node NPU coverage and rank ranges",
+    "8 P plus 16 D proxy endpoints",
+    "placeholder rejection",
+    "Docker detached mode and /data1 bind",
+    "shared config consistency",
+    "UTF-8 LF",
+    "host start delegates to detached container execution",
+    "Linux simulated background service survives parent exit",
+    "Linux simulated duplicate start blocked",
+    "Linux simulated graceful stop and repeated stop",
+    "Linux simulated early failure preserves logs"
+  ],
+  "nodes": [
+    {
+      "node": "P0",
+      "ranks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ports": [
+        7100,
+        7101,
+        7102,
+        7103
+      ],
+      "npu_devices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "node": "P1",
+      "ranks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ports": [
+        7100,
+        7101,
+        7102,
+        7103
+      ],
+      "npu_devices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "node": "D0",
+      "ranks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "ports": [
+        7100,
+        7101,
+        7102,
+        7103,
+        7104,
+        7105,
+        7106,
+        7107
+      ],
+      "npu_devices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "node": "D1",
+      "ranks": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "ports": [
+        7100,
+        7101,
+        7102,
+        7103,
+        7104,
+        7105,
+        7106,
+        7107
+      ],
+      "npu_devices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "runtime_validation": "NOT RUN: no real Docker container or A2 service started; Linux lifecycle checks used simulated services.",
+  "host_layout": {
+    "scripts": "/data1/P0, /data1/P1, /data1/D0, /data1/D1",
+    "weights": "/data1/DeepSeek-V4-Flash-0731-w8a8",
+    "logs": "/data1/logs/NODE",
+    "container": "dsv4-flash",
+    "mount": "/data1/:/data1/"
+  },
+  "historical_checks_note": "Checks above were performed on 2026-10-25; placeholder rejection was verified before addresses were populated.",
+  "address_check_2026_10_27": {
+    "status": "PASS",
+    "nodes": {
+      "P0": {
+        "ip": "10.26.0.11",
+        "nic": "bond1",
+        "dp_address": "10.26.0.11",
+        "rank_start": 0,
+        "commands": 4
+      },
+      "P1": {
+        "ip": "10.26.2.10",
+        "nic": "bond1",
+        "dp_address": "10.26.2.10",
+        "rank_start": 0,
+        "commands": 4
+      },
+      "D0": {
+        "ip": "10.26.2.12",
+        "nic": "bond1",
+        "dp_address": "10.26.2.12",
+        "rank_start": 0,
+        "commands": 8
+      },
+      "D1": {
+        "ip": "10.26.2.13",
+        "nic": "bond1",
+        "dp_address": "10.26.2.12",
+        "rank_start": 8,
+        "commands": 8
+      }
+    },
+    "cluster_files_identical": true,
+    "generated_proxy_endpoints": "P0 x4, P1 x4, D0 x8, D1 x8",
+    "limit": "Static and dry-run only; no network, container, NPU or inference test."
+  },
+  "api_config_check_2026_10_27": {
+    "status": "PASS",
+    "served_model_name": "deepseek",
+    "max_model_len": 262144,
+    "proxy_host": "0.0.0.0",
+    "proxy_port": 1036,
+    "url": "http://10.26.0.11:1036/v1/chat/completions",
+    "rank_commands_checked": 24,
+    "shared_config_files_identical": true,
+    "smoke_test": "mocked curl request and response; verified destination and model name",
+    "limit": "No actual Docker, NPU startup, inference or 262144-token context validation."
+  }
+}
