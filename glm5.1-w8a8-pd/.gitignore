@@ -1,0 +1,6 @@
+*.log
+*.latest
+__pycache__/
+*.py[cod]
+*.zip
+.env
